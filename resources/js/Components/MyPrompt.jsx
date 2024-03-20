@@ -60,42 +60,44 @@ const MyPrompt = ({ auth, Prompt, Key }) => {
         let variables = promptString.match(/{@.*?}/g);
 
         //remove duplicates from the array
+        if (variables) {
+            variables = variables.filter((item, index) => {
+                return variables.indexOf(item) === index;
+            });
 
-        variables = variables.filter((item, index) => {
-            return variables.indexOf(item) === index;
-        });
+            //create an array of objects with the variable and a random color and do not repeat colors
 
-        //create an array of objects with the variable and a random color and do not repeat colors
+            let variableColors = variables.map((variable) => {
+                return {
+                    variable: variable,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                };
+            });
 
-        let variableColors = variables.map((variable) => {
-            return {
-                variable: variable,
-                color: colors[Math.floor(Math.random() * colors.length)],
-            };
-        });
+            // check if the variables have duplicate colors and change the color if they do have the same color
 
-        // check if the variables have duplicate colors and change the color if they do have the same color
-
-        variableColors.forEach((vc, index) => {
-            let duplicate = variableColors.find(
-                (vcc, vccIndex) =>
-                    vcc.color.code === vc.color.code && index !== vccIndex
-            );
-            if (duplicate) {
-                let newColor = colors.find(
-                    (color) => !variableColors.find((vc) => vc.color === color)
+            variableColors.forEach((vc, index) => {
+                let duplicate = variableColors.find(
+                    (vcc, vccIndex) =>
+                        vcc.color.code === vc.color.code && index !== vccIndex
                 );
-                variableColors[index].color = newColor;
-            }
-        });
+                if (duplicate) {
+                    let newColor = colors.find(
+                        (color) =>
+                            !variableColors.find((vc) => vc.color === color)
+                    );
+                    variableColors[index].color = newColor;
+                }
+            });
 
-        //replace the variables with spans with the color
+            //replace the variables with spans with the color
 
-        promptString = promptString.replace(/{@.*?}/g, (match) => {
-            let color = variableColors.find((vc) => vc.variable === match).color
-                .code;
-            return `<span style="color:${color}">${match}</span>`;
-        });
+            promptString = promptString.replace(/{@.*?}/g, (match) => {
+                let color = variableColors.find((vc) => vc.variable === match)
+                    .color.code;
+                return `<span style="color:${color}">${match}</span>`;
+            });
+        }
 
         return promptString;
     };
