@@ -52,7 +52,15 @@ class PromptController extends Controller
      */
     public function update(Request $request, Prompt $prompt)
     {
-        //
+        $this->authorize('update', $prompt);
+
+        $validated = $request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'prompt'=>'required'
+        ]);
+
+        return redirect(route('myprompts.index'));
     }
 
     /**

@@ -37,7 +37,9 @@ class PromptPolicy
      */
     public function update(User $user, Prompt $prompt): bool
     {
-        //
+        return $prompt->user()->is($user)
+            ? Response::allow()
+            : Response::deny('You do not own this prompt.');    
     }
 
     /**

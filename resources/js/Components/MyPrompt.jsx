@@ -9,7 +9,7 @@ import { Badge } from "@/Components/ui/badge";
 import { Button } from "@/Components/ui/button";
 import { TrashIcon } from "@radix-ui/react-icons";
 import { useEffect } from "react";
-
+import PromptEdit from "@/Components/PromptEdit";
 const MyPrompt = ({ auth, Prompt, Key }) => {
     const colors = [
         {
@@ -123,13 +123,9 @@ const MyPrompt = ({ auth, Prompt, Key }) => {
 
                     <div className="ml-auto">
                         {auth.user.id === Prompt.user_id ? (
-                            <Button
-                                className="ml-auto"
-                                size="icon"
-                                variant="destructive"
-                            >
-                                <TrashIcon />
-                            </Button>
+                            <>
+                                <PromptEdit Prompt={Prompt} />
+                            </>
                         ) : null}
                     </div>
                 </CardTitle>
