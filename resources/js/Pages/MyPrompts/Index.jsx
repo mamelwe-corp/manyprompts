@@ -113,7 +113,7 @@ export default function Index({ auth, prompts }) {
                                     <Textarea
                                         id="prompt"
                                         name="prompt"
-                                        value={data.prompts}
+                                        value={data.prompt}
                                         className="mt-1 block w-full"
                                         autoComplete="prompt"
                                         onChange={(e) =>

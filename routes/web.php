@@ -21,10 +21,9 @@ Route::get('/', function () {
 
 Route::get('home', [PromptController::class, 'showAll'])->name('home')->middleware(['auth', 'verified']);
 
-Route::get('home/{prompt_id}', [PromptController::class, 'show'])->middleware(['auth', 'verified']);
+Route::resource('myprompts', PromptController::class)->middleware('auth');
 
-Route::resource('myprompts', PromptController::class)->only(['index', 'store', 'destroy', 'update'])->middleware('auth');
-
+Route::patch('/myprompts/{prompt}', [PromptController::class, 'update'])->name('myprompts.update')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

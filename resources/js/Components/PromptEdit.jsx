@@ -16,13 +16,8 @@ import { Textarea } from "@/Components/ui/textarea";
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import InputError from "@/Components/InputError";
 import { useForm } from "@inertiajs/react";
-import { useRef } from "react";
 const PromptEdit = ({ Prompt }) => {
-    const titleInput = useRef();
-    const descriptionInput = useRef();
-    const promptInput = useRef();
-
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, patch, processing, errors } = useForm({
         title: Prompt.title,
         description: Prompt.description,
         prompt: Prompt.prompt,
@@ -30,13 +25,13 @@ const PromptEdit = ({ Prompt }) => {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route("prompt.update", Prompt.id));
+        patch(route("myprompts.update", Prompt.id));
     };
 
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button>
+                <Button className="flex gap-2 items-center justify-center ">
                     <Pencil1Icon />
                     Edit
                 </Button>
@@ -58,17 +53,13 @@ const PromptEdit = ({ Prompt }) => {
                                     id="title"
                                     type="text"
                                     name="title"
-                                    ref={titleInput}
                                     value={data.title}
                                     onChange={(e) =>
                                         setData("title", e.target.value)
                                     }
                                     required
                                 />
-                                <InputError
-                                    error={errors.title}
-                                    fallback="Title is required"
-                                />
+                                <InputError error={errors.title} />
                             </div>
 
                             <div>
@@ -76,7 +67,6 @@ const PromptEdit = ({ Prompt }) => {
                                 <Textarea
                                     id="description"
                                     name="description"
-                                    ref={descriptionInput}
                                     value={data.description}
                                     onChange={(e) =>
                                         setData("description", e.target.value)
@@ -84,10 +74,7 @@ const PromptEdit = ({ Prompt }) => {
                                     required
                                 />
 
-                                <InputError
-                                    error={errors.description}
-                                    fallback="Description is required"
-                                />
+                                <InputError error={errors.description} />
                             </div>
 
                             <div>
@@ -95,7 +82,6 @@ const PromptEdit = ({ Prompt }) => {
                                 <Textarea
                                     id="prompt"
                                     name="prompt"
-                                    ref={promptInput}
                                     value={data.prompt}
                                     onChange={(e) =>
                                         setData("prompt", e.target.value)
@@ -103,10 +89,7 @@ const PromptEdit = ({ Prompt }) => {
                                     required
                                 />
 
-                                <InputError
-                                    error={errors.prompt}
-                                    fallback="Prompt is required"
-                                />
+                                <InputError error={errors.prompt} />
                             </div>
 
                             <div className="flex justify-end space-x-2">
