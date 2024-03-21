@@ -160,7 +160,7 @@ const MyPrompt = ({ auth, Prompt, Key }) => {
             promptString = promptString.replace(/{@.*?}/g, (match) => {
                 let color = variableColors.find((vc) => vc.variable === match)
                     .color.code;
-                return `<span style="color:${color};" class="bg-accent px-2 rounded-md">${match}</span>`;
+                return `<span style="color:${color};" class="bg-muted-foreground/40 dark:bg-accent px-2 rounded-md">${match}</span>`;
             });
         }
 

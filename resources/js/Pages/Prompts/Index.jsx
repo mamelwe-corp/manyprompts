@@ -17,7 +17,7 @@ import { Textarea } from "@/Components/ui/textarea";
 
 import MyPrompt from "@/Components/MyPrompt";
 
-export default function Index({ auth, prompts }) {
+export default function Index({ auth, posts }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         title: "",
         description: "",
@@ -26,12 +26,10 @@ export default function Index({ auth, prompts }) {
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route("myprompts.store", { onSuccess: () => reset() }));
+        //console.log(data)
+        post(route("prompts.store"), { onSuccess: () => reset() });
     };
-    useEffect(() => {
-        console.log(prompts);
-    }, []);
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -144,10 +142,10 @@ export default function Index({ auth, prompts }) {
                         <h2 className="font-semibold text-xl leading-tight mb-5">
                             My Prompts
                         </h2>
-                        {prompts ? (
+                        {posts ? (
                             <div className="mt-5">
                                 <div className="flex flex-col gap-5">
-                                    {prompts.map((prompt) => {
+                                    {posts.map((prompt) => {
                                         return (
                                             <MyPrompt
                                                 auth={auth}

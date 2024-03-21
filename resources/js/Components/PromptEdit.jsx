@@ -16,20 +16,23 @@ import { Textarea } from "@/Components/ui/textarea";
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import InputError from "@/Components/InputError";
 import { useForm } from "@inertiajs/react";
+import { useState } from "react";
 const PromptEdit = ({ Prompt }) => {
     const { data, setData, patch, processing, errors } = useForm({
         title: Prompt.title,
         description: Prompt.description,
         prompt: Prompt.prompt,
     });
-
+    const [open, setOpen] = useState(false);
     const submit = (e) => {
         e.preventDefault();
-        patch(route("myprompts.update", Prompt.id));
+        patch(route("prompts.update", Prompt.id), {
+            onSuccess: () => setOpen(false),
+        });
     };
 
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={() => setOpen(!open)}>
             <DialogTrigger asChild>
                 <Button className="flex gap-2 items-center justify-center ">
                     <Pencil1Icon />
@@ -93,7 +96,7 @@ const PromptEdit = ({ Prompt }) => {
                             </div>
 
                             <div className="flex justify-end space-x-2">
-                                <Button type="submit" processing={processing}>
+                                <Button type="submit" disabled={processing}>
                                     Save
                                 </Button>
                             </div>

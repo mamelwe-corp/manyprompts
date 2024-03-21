@@ -3,10 +3,7 @@ import { Head } from "@inertiajs/react";
 import { Card, CardContent, CardHeader } from "@/Components/ui/card";
 import { useEffect } from "react";
 import MyPrompt from "@/Components/MyPrompt";
-export default function Home({ auth, prompts }) {
-    useEffect(() => {
-        console.log(prompts);
-    }, []);
+export default function Home({ auth, posts }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -21,10 +18,10 @@ export default function Home({ auth, prompts }) {
                     <Card className="p-6">
                         <p>You're logged in!</p>
                     </Card>
-                    {prompts ? (
+                    {posts ? (
                         <div className="mt-5">
                             <div className="flex flex-col gap-5">
-                                {prompts.map((prompt) => {
+                                {posts.map((prompt) => {
                                     return (
                                         <MyPrompt
                                             auth={auth}

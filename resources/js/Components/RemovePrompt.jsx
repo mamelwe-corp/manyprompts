@@ -38,7 +38,7 @@ const RemovePrompt = ({ Prompt }) => {
                     </DialogHeader>
                     <div className="flex items-center justify-end gap-2">
                         <Link
-                            href={route("myprompts.destroy", Prompt.id)}
+                            href={route("prompts.destroy", Prompt.id)}
                             method="delete"
                         >
                             <Button variant="danger" size="sm">

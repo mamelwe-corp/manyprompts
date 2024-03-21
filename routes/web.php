@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\PromptController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -19,11 +19,12 @@ Route::get('/', function () {
 //     return Inertia::render('Home');
 // })->middleware(['auth', 'verified'])->name('home');
 
-Route::get('home', [PromptController::class, 'showAll'])->name('home')->middleware(['auth', 'verified']);
 
-Route::resource('myprompts', PromptController::class)->middleware('auth');
+Route::get('/home', [PostController::class, 'showAll'])->middleware(['auth', 'verified'])->name('home');
 
-Route::patch('/myprompts/{prompt}', [PromptController::class, 'update'])->name('myprompts.update')->middleware('auth');
+Route::resource('prompts', PostController::class)->only([
+    'index', 'store', 'update', 'destroy'
+])->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

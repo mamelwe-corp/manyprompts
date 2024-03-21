@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html class="dark interfont">
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark interfont">
     <head>
         <meta charset="utf-8">
