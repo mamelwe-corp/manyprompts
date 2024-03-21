@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import PromptEdit from "@/Components/PromptEdit";
 import RemovePrompt from "./RemovePrompt";
 import { managePrompt } from "@/lib/utils";
+import ViewPrompt from "./ViewPrompt";
 const MyPrompt = ({ auth, Prompt, Key }) => {
     const createdAt = new Date(Prompt.created_at);
     const updatedAt = new Date(Prompt.updated_at);
@@ -31,19 +32,15 @@ const MyPrompt = ({ auth, Prompt, Key }) => {
             <CardHeader>
                 <CardTitle className="flex">
                     <div className="flex items-center">
-                        {
-                            //if current route is "myprompts" dont show the user name
-
-                            route().current("home") ? (
-                                <div>
-                                    {Prompt.user?.name ? (
-                                        <Badge className={"mr-2"}>
-                                            {Prompt.user?.name}
-                                        </Badge>
-                                    ) : null}
-                                </div>
-                            ) : null
-                        }
+                        {route().current("home") ? (
+                            <div>
+                                {Prompt.user?.name ? (
+                                    <Badge className={"mr-2"}>
+                                        {Prompt.user?.name}
+                                    </Badge>
+                                ) : null}
+                            </div>
+                        ) : null}
                         <span className="text-xl">{Prompt.title}</span>
                     </div>
 
@@ -71,12 +68,17 @@ const MyPrompt = ({ auth, Prompt, Key }) => {
                 </CardDescription>
             </CardHeader>
             <CardContent className="whitespace-pre-line">
-                <div
-                    className="bg-primary-foreground p-5 border-[1px] border-border rounded-md"
-                    dangerouslySetInnerHTML={{
-                        __html: managePrompt(Prompt),
-                    }}
-                ></div>
+                {route().current("home") ? null : (
+                    <div
+                        className="bg-primary-foreground p-5 border-[1px] border-border rounded-md"
+                        dangerouslySetInnerHTML={{
+                            __html: managePrompt(Prompt),
+                        }}
+                    ></div>
+                )}
+                {route().current("home") ? (
+                    <ViewPrompt Prompt={Prompt} />
+                ) : null}
             </CardContent>
         </Card>
     );

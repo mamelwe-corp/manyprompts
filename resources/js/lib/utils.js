@@ -1,8 +1,8 @@
-import { clsx } from "clsx"
-import { twMerge } from "tailwind-merge"
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs) {
-  return twMerge(clsx(inputs))
+    return twMerge(clsx(inputs));
 }
 
 export const managePrompt = (Prompt) => {
@@ -132,7 +132,9 @@ export const managePrompt = (Prompt) => {
         promptString = promptString.replace(/{@.*?}/g, (match) => {
             let color = variableColors.find((vc) => vc.variable === match).color
                 .code;
-            return `<span style="color:${color};" class="bg-muted-foreground/40 dark:bg-accent px-2 rounded-md">${match}</span>`;
+            return `<span style="color:${color}; background-color: 
+            ${color}20; padding: 0rem 0.15rem; border-radius: 0.25rem
+            ">${match}</span>`;
         });
     }
 

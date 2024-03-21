@@ -15,8 +15,8 @@ class PostController extends Controller
     public function showAll()
     {
         return Inertia::render('Home', [
-            'posts' => DB::table('posts')->latest()->get()
             
+           'posts' => Post::with('user:id,name')->latest()->get()
         ]);
     }
 
