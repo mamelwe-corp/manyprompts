@@ -12,7 +12,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/Components/ui/dropdown-menu";
-
+import ModeToggle from "@/Components/mode-toggle";
 import { Button } from "@/Components/ui/button";
 
 export default function Authenticated({ user, header, children }) {
@@ -49,12 +49,13 @@ export default function Authenticated({ user, header, children }) {
                                     </NavLink>
                                 </div>
                             </div>
-                            <div className="items-center justify-center hidden sm:flex">
+                            <div className="items-center justify-center hidden sm:flex gap-3">
+                                <ModeToggle />
                                 <DropdownMenu>
                                     <DropdownMenuTrigger asChild>
                                         <Button>{user.name}</Button>
                                     </DropdownMenuTrigger>
-                                    <DropdownMenuContent className="mt-2 mr-5">
+                                    <DropdownMenuContent align="end">
                                         <DropdownMenuLabel>
                                             My Account
                                         </DropdownMenuLabel>
