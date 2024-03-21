@@ -6,7 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
+use Illuminate\Support\Facades\DB;
 class PostController extends Controller
 {
     use AuthorizesRequests;
@@ -15,7 +15,8 @@ class PostController extends Controller
     public function showAll()
     {
         return Inertia::render('Home', [
-            'posts' => Post::with('user:id,name')->latest()->get()
+            'posts' => DB::table('posts')->latest()->get()
+            
         ]);
     }
 

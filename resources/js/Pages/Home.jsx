@@ -4,6 +4,10 @@ import { Card, CardContent, CardHeader } from "@/Components/ui/card";
 import { useEffect } from "react";
 import MyPrompt from "@/Components/MyPrompt";
 export default function Home({ auth, posts }) {
+    useEffect(() => {
+        console.log(posts);
+    }, [posts]);
+
     return (
         <AuthenticatedLayout
             user={auth.user}
