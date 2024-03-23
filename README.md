@@ -6,11 +6,21 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+
+## Participantes
+
+-   Andersson Hadad 30065693
+-   Wilder Vara 30581660
+-   Steven Paucar 30612529
+-   José Pacheco 30581667
+-   Daniel Maury 30644530
+
 ## Requerimentos Basicos
+
 1. Instalar XAMPP
 2. Instalar Composer
-2. Tener PHP 8.2
-3. Tener NodeJS 20
+3. Tener PHP 8.2
+4. Tener NodeJS 20
 
 ## Instalacion
 
