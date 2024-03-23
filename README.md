@@ -13,7 +13,7 @@
 -   Wilder Vara 30581660
 -   Steven Paucar 30612529
 -   José Pacheco 30581667
--   Daniel Maury 30644530
+-   Daniel Maury 30644530aaa
 
 ## Requerimentos Basicos
 
