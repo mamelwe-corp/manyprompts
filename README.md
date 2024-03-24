@@ -13,7 +13,7 @@
 -   Wilder Vara 30581660
 -   Steven Paucar 30612529
 -   José Pacheco 30581667
--   Daniel Maury 30644530aaa
+-   Daniel Maury 30644530
 
 ## Requerimentos Basicos
 
@@ -65,6 +65,8 @@ y por ultimo ejecutamos el servidor del frontend con:
 ```
 npm run dev
 ```
+
+Accede a la aplicacion en `http://localhost:8000`
 
 ## About Laravel
 

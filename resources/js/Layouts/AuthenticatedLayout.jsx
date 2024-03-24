@@ -21,7 +21,7 @@ export default function Authenticated({ user, header, children }) {
 
     return (
         <div className="min-h-screen ">
-            <div className="sticky top-0 bg-background border-b">
+            <div className="sticky top-0 bg-background ">
                 <nav className=" border-b">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between h-16">
@@ -132,6 +132,12 @@ export default function Authenticated({ user, header, children }) {
                                 active={route().current("home")}
                             >
                                 Home
+                            </ResponsiveNavLink>
+                            <ResponsiveNavLink
+                                href={route("prompts.index")}
+                                active={route().current("prompts.index")}
+                            >
+                                My Prompts
                             </ResponsiveNavLink>
                         </div>
 

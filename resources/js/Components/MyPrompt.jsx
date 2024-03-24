@@ -23,50 +23,77 @@ const MyPrompt = ({ auth, Prompt, Key }) => {
         day: "numeric",
     });
 
-    useEffect(() => {
-        console.log();
-    }, []);
-
     return (
         <Card key={Key}>
-            <CardHeader>
-                <CardTitle className="flex">
-                    <div className="flex items-center">
-                        {route().current("home") ? (
-                            <div>
-                                {Prompt.user?.name ? (
-                                    <Badge className={"mr-2"}>
-                                        {Prompt.user?.name}
-                                    </Badge>
+            {route().current("home") || route().current("prompts.index") ? (
+                <CardHeader>
+                    <CardTitle className="flex">
+                        <div className="flex items-center">
+                            {route().current("home") ? (
+                                <div>
+                                    {Prompt.user?.name ? (
+                                        <Badge className={"mr-2"}>
+                                            {Prompt.user?.name}
+                                        </Badge>
+                                    ) : null}
+                                </div>
+                            ) : null}
+                            <span className="text-xl">{Prompt.title}</span>
+                        </div>
+
+                        {route().current("home") ? null : (
+                            <div className="ml-auto flex gap-2">
+                                {auth.user.id === Prompt.user_id ? (
+                                    <>
+                                        <PromptEdit Prompt={Prompt} />
+                                        <RemovePrompt Prompt={Prompt} />
+                                    </>
                                 ) : null}
                             </div>
-                        ) : null}
-                        <span className="text-xl">{Prompt.title}</span>
-                    </div>
+                        )}
+                    </CardTitle>
+                    <span className="text-sm">
+                        Created: {createdAtString} | Updated:{" "}
+                        {updatedAt.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })}
+                    </span>
+                    <CardDescription className="text-md">
+                        {Prompt.description}
+                    </CardDescription>
+                </CardHeader>
+            ) : null}
 
-                    {route().current("home") ? null : (
-                        <div className="ml-auto flex gap-2">
-                            {auth.user.id === Prompt.user_id ? (
-                                <>
-                                    <PromptEdit Prompt={Prompt} />
-                                    <RemovePrompt Prompt={Prompt} />
-                                </>
-                            ) : null}
+            {route().current("home") ||
+            route().current("prompts.index") ? null : (
+                <CardHeader>
+                    <CardTitle className="flex">
+                        <div className="flex items-center">
+                            <div>
+                                <Badge className={"mr-2"}>
+                                    {Prompt.user?.name}
+                                </Badge>
+                            </div>
+
+                            <span className="text-xl">{Prompt.title}</span>
                         </div>
-                    )}
-                </CardTitle>
-                <span className="text-sm">
-                    Created: {createdAtString} | Updated:{" "}
-                    {updatedAt.toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                    })}
-                </span>
-                <CardDescription className="text-md">
-                    {Prompt.description}
-                </CardDescription>
-            </CardHeader>
+                    </CardTitle>
+                    <span className="text-sm">
+                        Created: {createdAtString} | Updated:{" "}
+                        {updatedAt.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })}
+                    </span>
+                    <CardDescription className="text-md">
+                        {Prompt.description}
+                    </CardDescription>
+                </CardHeader>
+            )}
+
             <CardContent className="whitespace-pre-line">
                 {route().current("home") ? null : (
                     <div
@@ -79,6 +106,13 @@ const MyPrompt = ({ auth, Prompt, Key }) => {
                 {route().current("home") ? (
                     <ViewPrompt Prompt={Prompt} />
                 ) : null}
+
+                {route().current("home") ||
+                route().current("prompts.index") ? null : (
+                    <div className="pt-4">
+                        <ViewPrompt Prompt={Prompt} />
+                    </div>
+                )}
             </CardContent>
         </Card>
     );

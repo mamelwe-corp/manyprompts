@@ -39,9 +39,9 @@ const ViewPrompt = ({ Prompt }) => {
         navigator.clipboard.writeText(newPrompt);
     };
 
-    useEffect(() => {
-        console.log("new", newPrompt);
-    }, [newPrompt]);
+    // useEffect(() => {
+    //     console.log("new", newPrompt);
+    // }, [newPrompt]);
     return (
         <Dialog>
             <DialogTrigger asChild>
