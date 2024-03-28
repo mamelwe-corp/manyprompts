@@ -31,7 +31,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
     return (
         <>
             <Head title="Welcome" />
-            <div className="sticky top-0 bg-background">
+            <div className="fixed top-0 bg-background w-full">
                 <nav className=" border-b">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div className="flex justify-between h-16">
@@ -137,7 +137,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                     </div>
                 </nav>
             </div>
-            <div className="w-full p-5">
+            <div className="w-full p-5 mt-7">
                 <main
                     div
                     className="max-w-4xl mx-auto sm:px-6 lg:px-8 flex flex-col justify-center items-center"

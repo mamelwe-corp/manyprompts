@@ -11,7 +11,11 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-
+    /**
+     * Get the user's posts.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function posts()
     {
         return $this->hasMany(Post::class);

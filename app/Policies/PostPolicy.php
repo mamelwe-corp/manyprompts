@@ -5,7 +5,7 @@ namespace App\Policies;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
-
+//policies are used to authorize actions on a model
 class PostPolicy
 {
     public function update(User $user, Post $post): bool
