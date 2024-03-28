@@ -188,7 +188,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                         "
                         >
                             <li>Andersson Hadad 30065693</li>
-                            <li>Wilder Vara 30581660</li>
+                            <li>Wilder Varas 30581660</li>
                             <li>Steven Paucar 30612529</li>
                             <li>José Pacheco 30581667</li>
                             <li>Daniel Maury 30644530</li>
